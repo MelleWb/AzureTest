@@ -20,11 +20,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-          working-directory: ./lob-dev-app
 
       - name: npm install, and build
         run: |
-          pm install
+          npm install
           npm run build
         working-directory: ./lob-dev-app
 
