@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 
 app.use(express.static("build"));
 app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname + "/lob-dev-app/build/index.html"));
+  res.sendFile(path.resolve(__dirname + "./lob-dev-app/build/index.html"));
 });
 
 const PORT = process.env.PORT || 4000;
