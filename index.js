@@ -27,9 +27,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.static(path.join(__dirname, "/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/build", "index.html"));
+  const buildPath = path.join(__dirname, "./build", "index.html");
+  console.log(`Build path: ${buildPath}`);
+  res.sendFile(buildPath);
 });
 
 const PORT = process.env.PORT || 4000;
