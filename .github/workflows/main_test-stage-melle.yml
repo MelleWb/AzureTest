@@ -28,7 +28,8 @@ jobs:
         working-directory: ./lob-dev-app
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip build
+        run: |
+          zip -r ../release.zip build
         working-directory: ./lob-dev-app
 
       - name: Upload artifact for deployment job
