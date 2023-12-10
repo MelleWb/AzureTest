@@ -1,7 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mysql = require("mysql2");
 const app = express();
 const path = require("path");
+
+const db = mysql.createConnection({
+  user: "root",
+  host: "localhost",
+  password: "Aezihw123!",
+  database: "employeeSystem",
+});
 
 const cors = require("cors");
 app.use(cors());
