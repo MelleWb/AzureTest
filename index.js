@@ -1,31 +1,34 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const app = express();
+const mysql = require("mysql2");
+const bodyParser = require("body-parser");
 const path = require("path");
 
-const cors = require("cors");
-app.use(cors());
+// Set up CORS options
+const corsOptions = {
+  origin: "http://localhost:3000", // Make sure to not have a trailing slash
+  methods: ["GET", "POST", "DELETE", "PATCH", "PUT"], // Include all methods used by your application
+  credentials: true,
+};
+
+// Apply CORS with your options
+const cors = require("cors")(corsOptions);
+app.use(cors);
+
+// Rest of your body-parser setup
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/hello", (req, res) => {
-  res.send("Hello Server!");
+// Database connection
+const db = mysql.createConnection({
+  user: "root",
+  host: "localhost",
+  password: "Aezihw123!",
+  database: "employeeSystem",
 });
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  next();
-});
+const EmployeesRouter = require("./routes/Employees")(db);
+app.use("/employees", EmployeesRouter);
 
 app.use(express.static(path.join(__dirname, "lob-dev-app", "build")));
 app.get("/*", (req, res) => {
