@@ -27,6 +27,9 @@ app.use(function (req, res, next) {
   next();
 });
 
+const EmployeesRouter = require("./routes/Employees")(db);
+app.use("/employees", EmployeesRouter);
+
 app.use(express.static(path.join(__dirname, "lob-dev-app", "build")));
 app.get("/*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "lob-dev-app/build/", "index.html"));
