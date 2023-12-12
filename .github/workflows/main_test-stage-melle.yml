@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: "Test-stage-melle"
           slot-name: "Production"
-          package: .
+          package: ./lob-dev-app/build
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4F2749EF536D46F898274969170B8238 }}
