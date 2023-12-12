@@ -4,13 +4,6 @@ const mysql = require("mysql2");
 const app = express();
 const path = require("path");
 
-const db = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "Aezihw123!",
-  database: "employeeSystem",
-});
-
 const cors = require("cors");
 app.use(cors());
 app.use(bodyParser.json());
@@ -35,8 +28,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-const EmployeesRouter = require("./routes/Employees")(db);
-app.use("/employees", EmployeesRouter);
+// const EmployeesRouter = require("./routes/Employees")(db);
+// app.use("/employees", EmployeesRouter);
 
 app.use(express.static(path.join(__dirname, "lob-dev-app", "build")));
 app.get("/*", (req, res) => {
