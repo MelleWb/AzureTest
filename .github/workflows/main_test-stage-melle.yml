@@ -49,6 +49,9 @@ jobs:
         with:
           name: node-app
 
+      - name: List contents of the build directory
+        run: ls -l lob-dev-app/build
+
       - name: Unzip artifact for deployment
         run: cd lob-dev-app && zip -r ../release.zip build/*
 
