@@ -31,9 +31,9 @@ app.use(function (req, res, next) {
 // const EmployeesRouter = require("./routes/Employees")(db);
 // app.use("/employees", EmployeesRouter);
 
-app.use(express.static(path.join(__dirname, "lob-dev-app", "build")));
+app.use(express.static(path.join(__dirname, "client", "build")));
 app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "lob-dev-app/build/", "index.html"));
+  res.sendFile(path.resolve(__dirname, "client/build/", "index.html"));
 });
 
 const PORT = process.env.PORT || 4000;
